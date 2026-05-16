@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleeping Beauty — St. Symphorosa School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #1a3a8f;
+      --blue-light: #2a55c5;
+      --gold:       #f5c400;
+      --gold-dark:  #d4a800;
+      --red:        #cc2a2a;
+      --bg:         #f7f4ee;
+      --paper:      #fffef9;
+      --ink:        #1a1a2e;
+      --ink-dim:    #555570;
+      --rule:       #d0c8b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Nunito', sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .hero {
+      background: var(--blue);
+      color: white;
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* diagonal stripe decoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 28px,
+        rgba(255,255,255,0.04) 28px,
+        rgba(255,255,255,0.04) 30px
+      );
+      pointer-events: none;
+    }
+
+    .hero-banner {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--blue);
+      font-family: 'Bangers', cursive;
+      font-size: 0.95rem;
+      letter-spacing: 0.2em;
+      padding: 0.3rem 1.2rem;
+      border-radius: 3px;
+      margin-bottom: 1.25rem;
+      transform: rotate(-1deg);
+      box-shadow: 2px 2px 0 var(--gold-dark);
+    }
+
+    .hero-title {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(4rem, 13vw, 9rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: white;
+      text-shadow: 4px 4px 0 var(--gold), 6px 6px 0 var(--gold-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-tagline {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .hero-meta span::before { content: '⭐ '; }
+
+    .hero-stars {
+      margin-top: 2rem;
+      font-size: 1.8rem;
+      letter-spacing: 0.3em;
+      opacity: 0.6;
+    }
+
+    /* ── Shared section ───────────────────────────────── */
+    section { padding: 4rem 1.5rem; }
+
+    .container      { max-width: 860px;  margin: 0 auto; }
+    .container-wide { max-width: 1160px; margin: 0 auto; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .stamp {
+      display: inline-block;
+      font-family: 'Bangers', cursive;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: 0.06em;
+      color: var(--blue);
+      border: 4px solid var(--blue);
+      padding: 0.2rem 1rem;
+      border-radius: 4px;
+      transform: rotate(-1.5deg);
+      position: relative;
+    }
+
+    .stamp.gold {
+      color: var(--gold-dark);
+      border-color: var(--gold-dark);
+      transform: rotate(1deg);
+    }
+
+    .zigzag {
+      width: 100%;
+      height: 12px;
+      margin: 1.5rem 0;
+      background:
+        linear-gradient(135deg, var(--bg) 33.33%, transparent 33.33%) 0 0,
+        linear-gradient(225deg, var(--bg) 33.33%, transparent 33.33%) 0 0,
+        var(--gold);
+      background-size: 20px 12px;
+      background-repeat: repeat-x;
+    }
+
+    .zigzag.blue {
+      background:
+        linear-gradient(135deg, var(--bg) 33.33%, transparent 33.33%) 0 0,
+        linear-gradient(225deg, var(--bg) 33.33%, transparent 33.33%) 0 0,
+        var(--blue);
+      background-size: 20px 12px;
+      background-repeat: repeat-x;
+    }
+
+    /* ── Video ────────────────────────────────────────── */
+    .video-section {
+      background: var(--paper);
+      border-top: 5px solid var(--gold);
+      border-bottom: 5px solid var(--gold);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 4px solid var(--blue);
+      box-shadow: 6px 6px 0 var(--gold-dark);
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper .video-placeholder {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #e8f0fe;
+      gap: 0.75rem;
+      color: var(--blue);
+    }
+
+    .video-placeholder svg   { width: 56px; height: 56px; opacity: 0.5; }
+    .video-placeholder p     { font-family: 'Bangers', cursive; font-size: 1.4rem; letter-spacing: 0.08em; }
+    .video-placeholder small { font-size: 0.85rem; opacity: 0.6; font-weight: 600; }
+
+    /* ── Gallery ──────────────────────────────────────── */
+    .gallery-section {
+      background: var(--blue);
+      padding-top: 3.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .gallery-section .section-header .stamp {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .pin-photo {
+      position: relative;
+      background: white;
+      padding: 0.6rem 0.6rem 2.2rem;
+      box-shadow: 3px 4px 12px rgba(0,0,0,0.35);
+      cursor: zoom-in;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pin-photo:nth-child(1) { transform: rotate(-1.8deg); }
+    .pin-photo:nth-child(2) { transform: rotate(1.2deg); }
+    .pin-photo:nth-child(3) { transform: rotate(-0.8deg); }
+    .pin-photo:nth-child(4) { transform: rotate(2.1deg); }
+    .pin-photo:nth-child(5) { transform: rotate(-1.4deg); }
+
+    .pin-photo:hover {
+      transform: rotate(0deg) scale(1.03) !important;
+      box-shadow: 6px 8px 24px rgba(0,0,0,0.45);
+      z-index: 10;
+    }
+
+    .pin-photo::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.4);
+      z-index: 2;
+    }
+
+    .pin-photo img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pin-photo.big { grid-column: span 2; }
+    .pin-photo.big img { aspect-ratio: 16/9; }
+
+    .pin-caption {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--ink-dim);
+      padding-top: 0.5rem;
+      font-family: 'Nunito', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.88);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .lightbox.open { display: flex; }
+    .lightbox img  { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; }
+
+    .lb-close {
+      position: absolute;
+      top: 1.25rem; right: 1.5rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 50%;
+      color: var(--blue);
+      width: 40px; height: 40px;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+    }
+
+    /* ── Synopsis ─────────────────────────────────────── */
+    .synopsis-section { background: var(--paper); }
+
+    .synopsis-card {
+      background: white;
+      border: 3px solid var(--blue);
+      border-radius: 8px;
+      padding: 2.25rem 2.5rem;
+      position: relative;
+      box-shadow: 5px 5px 0 var(--blue);
+    }
+
+    .synopsis-card::before {
+      content: 'THE STORY';
+      position: absolute;
+      top: -1rem;
+      left: 1.5rem;
+      background: var(--gold);
+      color: var(--blue);
+      font-family: 'Bangers', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      padding: 0.1rem 0.75rem;
+      border-radius: 3px;
+    }
+
+    .synopsis-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+
+    .synopsis-text em { color: var(--blue); font-style: normal; font-weight: 800; }
+
+    /* ── Cast ─────────────────────────────────────────── */
+    .cast-section { background: var(--bg); }
+
+    .cast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .cast-card {
+      background: white;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      border-left: 5px solid var(--gold);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.08);
+    }
+
+    .cast-card:nth-child(3n+1) { border-left-color: var(--blue); }
+    .cast-card:nth-child(3n+2) { border-left-color: var(--gold-dark); }
+    .cast-card:nth-child(3n)   { border-left-color: var(--blue-light); }
+
+    .cast-role {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-dim);
+      margin-bottom: 0.2rem;
+    }
+
+    .cast-names {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .cast-names.lead { font-size: 1.1rem; font-weight: 800; }
+
+    .cast-crew {
+      margin-top: 2.5rem;
+      background: var(--blue);
+      border-radius: 8px;
+      padding: 2rem;
+      color: white;
+      text-align: center;
+    }
+
+    .cast-crew h3 {
+      font-family: 'Bangers', cursive;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .crew-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 3rem;
+    }
+
+    .crew-member .role {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+      margin-bottom: 0.15rem;
+    }
+
+    .crew-member .name { font-size: 1rem; font-weight: 700; }
+
+    .cast-motto {
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink-dim);
+      margin-top: 2rem;
+      font-style: italic;
+    }
+
+    /* ── Tribute ──────────────────────────────────────── */
+    .tribute-section { background: var(--gold); }
+
+    .tribute-inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+      background: white;
+      border: 4px solid var(--blue);
+      border-radius: 10px;
+      padding: 2.5rem;
+      box-shadow: 6px 6px 0 var(--blue);
+    }
+
+    .tribute-star {
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--gold);
+      filter: drop-shadow(2px 2px 0 var(--gold-dark));
+    }
+
+    .tribute-label {
+      font-family: 'Bangers', cursive;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .tribute-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+
+    .tribute-sig {
+      margin-top: 1rem;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--blue);
+    }
+
+    /* ── MCT ──────────────────────────────────────────── */
+    .mct-section { background: var(--paper); }
+
+    .mct-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .mct-body p { margin-bottom: 1.1rem; }
+
+    .mct-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      font-family: 'Bangers', cursive;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      padding: 0.55rem 1.5rem;
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 var(--gold-dark);
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+
+    .mct-link:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--gold-dark);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat {
+      background: var(--blue);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat::after {
+      content: '★';
+      position: absolute;
+      bottom: -0.5rem;
+      right: 0.2rem;
+      font-size: 3rem;
+      opacity: 0.08;
+      line-height: 1;
+    }
+
+    .stat-num {
+      display: block;
+      font-family: 'Bangers', cursive;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-lbl { font-size: 0.8rem; font-weight: 600; opacity: 0.8; }
+
+    /* ── Sponsors ─────────────────────────────────────── */
+    .sponsors-section {
+      background: var(--blue);
+      text-align: center;
+      color: white;
+    }
+
+    .sponsors-section .stamp { color: var(--gold); border-color: var(--gold); }
+
+    .sponsors-note {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      max-width: 520px;
+      margin: 1rem auto 2rem;
+    }
+
+    .sponsor-chips {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .sponsor-chips li {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 0.6rem 1.4rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: white;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      background: #0d2060;
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 2;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .mct-layout     { grid-template-columns: 1fr; }
+      .gallery-grid   { grid-template-columns: 1fr 1fr; }
+      .pin-photo.big  { grid-column: span 1; }
+      .tribute-inner  { grid-template-columns: 1fr; }
+      .tribute-star   { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 3rem 1rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .cast-grid    { grid-template-columns: 1fr; }
+      .stat-grid    { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-banner">⭐ St. Symphorosa School ⭐</div>
+  <h1 class="hero-title">Sleeping<br>Beauty</h1>
+  <p class="hero-tagline">A Rock 'n Roll Fable &mdash; May 15, 2026</p>
+  <div class="hero-meta">
+    <span>Presented with Missoula Children's Theatre</span>
+    <span>Rehearsed &amp; performed in one week</span>
+  </div>
+  <div class="hero-stars" aria-hidden="true">★ ★ ★ ★ ★</div>
+</header>
+
+
+<!-- ════════════════════════════════════════════
+     VIDEO
+     ════════════════════════════════════════════ -->
+<section class="video-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="stamp">Watch the Show!</div>
+    </div>
+
+    <div class="video-wrapper">
+      <iframe
+        src="https://drive.google.com/file/d/1a6Fao_FXTZcz-CVjfsi_BrDF34uvaNdE/preview"
+        title="Sleeping Beauty — St. Symphorosa School, May 2026"
+        frameborder="0"
+        allow="autoplay"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     GALLERY
+     ════════════════════════════════════════════ -->
+<section class="gallery-section">
+  <div class="container-wide">
+    <div class="section-header">
+      <div class="stamp gold">Photos from the Show</div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="pin-photo big" onclick="openLB('images/finale.jpg')">
+        <img src="images/finale.jpg" alt="Full cast takes a bow">
+        <p class="pin-caption">The whole company — curtain call!</p>
+      </div>
+      <div class="pin-photo" onclick="openLB('images/group-sunglasses.jpg')">
+        <img src="images/group-sunglasses.jpg" alt="Full cast group shot">
+        <p class="pin-caption">Oh yeah 😎</p>
+      </div>
+      <div class="pin-photo" onclick="openLB('images/scene-caterpillars.jpg')">
+        <img src="images/scene-caterpillars.jpg" alt="The caterpillars">
+        <p class="pin-caption">The Caterpillars</p>
+      </div>
+      <div class="pin-photo" onclick="openLB('images/scene-royals.jpg')">
+        <img src="images/scene-royals.jpg" alt="The King and Queen">
+        <p class="pin-caption">The Royal Court</p>
+      </div>
+      <div class="pin-photo" onclick="openLB('images/scene-rock-n-roll.jpg')">
+        <img src="images/scene-rock-n-roll.jpg" alt="Rock n Roll scene">
+        <p class="pin-caption">Rock 'n Roll Dream 🎸</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lb" onclick="closeLB()">
+  <button class="lb-close" onclick="closeLB()" aria-label="Close">&times;</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SYNOPSIS
+     ════════════════════════════════════════════ -->
+<section class="synopsis-section">
+  <div class="container">
+    <div class="synopsis-card">
+      <p class="synopsis-text">
+        The Missoula Children's Theatre presents <em>Sleeping Beauty</em> — an original adaptation of the classic fairy tale. A new princess is born, and all the people of the kingdom gather to celebrate. But one invitation goes missing, and the wrath of the vicious <em>Scarella</em> falls upon them in the form of a terrible spell: Sleeping Beauty is destined to sleep for eternity before she reaches her sixteenth birthday.
+        <br><br>
+        The Fairy Godmothers do their very best to soften the curse, but Scarella — with the help of some exceedingly nasty <em>Trolls</em> — tricks Sleeping Beauty into pricking her finger, and the spell takes hold. Five hundred years pass&hellip; and Sleeping Beauty wakes to find herself in a Rock&nbsp;'n&nbsp;Roll dream.
+        <br><br>
+        <strong>This is definitely no sleeper.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     CAST
+     ════════════════════════════════════════════ -->
+<section class="cast-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="stamp">The Cast</div>
+    </div>
+
+    <div class="cast-grid">
+      <div class="cast-card">
+        <p class="cast-role">Younger Sleeping Beauty</p>
+        <p class="cast-names lead">Zoey S.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Older Sleeping Beauty</p>
+        <p class="cast-names lead">Maite S.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Scarella</p>
+        <p class="cast-names lead">Cecelia M.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Lady-in-Waiting / Madame Butterfly</p>
+        <p class="cast-names lead">Maggie A.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">King</p>
+        <p class="cast-names lead">Ben B.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Queen</p>
+        <p class="cast-names lead">Gisel L.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Spot</p>
+        <p class="cast-names lead">Roselyn G.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Town Crier</p>
+        <p class="cast-names lead">Ruth E.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">The Fairies</p>
+        <p class="cast-names">Nadia S., Gabriella M., Evangelene G., Camila S., Dolyn P., Mia M., Joan K., Pearl F., Mia A., Lia P., Gianna G., Milani T.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">The Trolls</p>
+        <p class="cast-names">Michael M., Giovanny G., Oliver T., Aiden F., Isaac A., Bradley B.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Musicians</p>
+        <p class="cast-names">Alessandra S.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Cooks</p>
+        <p class="cast-names">Amalia N.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Housekeeping Crew</p>
+        <p class="cast-names">Leilani M., Ariana J.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Caterpillars</p>
+        <p class="cast-names">Annabella H., Camila G., Luna Q., Victoria G., Penelope L., Olive F., Jack K., Nora D., Elena B.</p>
+      </div>
+      <div class="cast-card">
+        <p class="cast-role">Assistant Directors</p>
+        <p class="cast-names">Matthew P., Harvey F.</p>
+      </div>
+    </div>
+
+    <div class="cast-crew">
+      <h3>Missoula Children's Theatre Tour Company</h3>
+      <div class="crew-row">
+        <div class="crew-member">
+          <span class="role">Accompanist</span>
+          <span class="name">Teresa DeVan</span>
+        </div>
+        <div class="crew-member">
+          <span class="role">Tour Actor / Director</span>
+          <span class="name">Leigha Davidson</span>
+        </div>
+        <div class="crew-member">
+          <span class="role">Director / Tour Actor</span>
+          <span class="name">Nolan Davidson</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="cast-motto">Our children are stewards of God's gifts.</p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     TRIBUTE — DR. BARRY
+     ════════════════════════════════════════════ -->
+<section class="tribute-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="stamp">Thank You, Dr. Barry!</div>
+    </div>
+    <div class="tribute-inner">
+      <div class="tribute-star" aria-hidden="true">⭐</div>
+      <div>
+        <p class="tribute-label">A special thank you</p>
+        <p class="tribute-text">
+          This production came to life through the extraordinary heart and vision of our principal, Dr. Barry — a true champion of the arts at St. Symphorosa. The Missoula Children's Theatre holds a deeply personal place for her: her own children once stood on a stage just like this one, and a lifelong love of the performing arts has been woven through her family for generations. Her mother's devotion to the arts lives on in every child who steps into costume, finds their voice, and discovers what they are truly capable of. It is through Dr. Barry's belief, her dedication, and the quiet generosity of her spirit that our school had this extraordinary week. We are grateful beyond words.
+        </p>
+        <p class="tribute-sig">— The St. Symphorosa School Family</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     MCT
+     ════════════════════════════════════════════ -->
+<section class="mct-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="stamp">About MCT</div>
+    </div>
+    <div class="mct-layout">
+      <div class="mct-body">
+        <p>For over 50 years, the Missoula Children's Theatre has been bringing the transformative power of live performance to communities across the country — and the world. Their touring company visits more than 1,000 communities each year, casting entirely from local students and mounting a fully staged production in a single week.</p>
+        <p>What you witnessed last night was the result of just five days of rehearsal. Your children learned lines, songs, choreography, and blocking — and delivered a show that would make any stage proud. That is the MCT magic.</p>
+        <a class="mct-link" href="https://www.mctinc.org" target="_blank" rel="noopener noreferrer">Visit MCTinc.org &#8594;</a>
+      </div>
+      <div class="stat-grid">
+        <div class="stat">
+          <span class="stat-num">50+</span>
+          <span class="stat-lbl">Years touring</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">1M+</span>
+          <span class="stat-lbl">Children reached</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">1,000+</span>
+          <span class="stat-lbl">Communities/year</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">65K</span>
+          <span class="stat-lbl">Children/year</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SPONSORS
+     ════════════════════════════════════════════ -->
+<section class="sponsors-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="stamp">Tour Sponsors</div>
+    </div>
+    <p class="sponsors-note">The MCT touring program is made possible through the generous support of:</p>
+    <ul class="sponsor-chips">
+      <li>National Endowment for the Arts</li>
+      <li>Montana Cultural Trust</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════ -->
+<footer>
+  <p>Sleeping Beauty &bull; St. Symphorosa School &bull; May 15, 2026</p>
+  <p>Presented in partnership with <a href="https://www.mctinc.org" target="_blank" rel="noopener">Missoula Children's Theatre</a></p>
+</footer>
+
+
+<script>
+  function openLB(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLB() {
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('lb-img').src = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+  document.getElementById('lb-img').addEventListener('click', e => e.stopPropagation());
+</script>
+
+</body>
+</html>

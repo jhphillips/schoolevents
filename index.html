@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleeping Beauty — St. Symphorosa School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Cinzel:wght@600;900&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a1f;
+      font-family: 'Nunito', sans-serif;
+      padding: 2rem 1.5rem;
+      gap: 0;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .intro-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 0.75rem;
+    }
+
+    .intro-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 7vw, 4.5rem);
+      font-weight: 900;
+      color: #f5ead8;
+      line-height: 1.05;
+      text-shadow: 0 0 60px rgba(201,168,76,0.3);
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-sub {
+      font-size: 1rem;
+      color: rgba(245,234,216,0.5);
+      font-weight: 600;
+    }
+
+    .choose-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 840px;
+    }
+
+    .card {
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover { transform: translateY(-6px); }
+
+    /* ── Enchanted card ── */
+    .card-enchanted {
+      background: linear-gradient(145deg, #0f0f35 0%, #1a1060 100%);
+      border: 1px solid rgba(201,168,76,0.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.1);
+    }
+
+    .card-enchanted:hover {
+      box-shadow: 0 16px 60px rgba(0,0,0,0.7), 0 0 30px rgba(201,168,76,0.15);
+    }
+
+    .card-enchanted .preview {
+      background: linear-gradient(135deg, #08081f 0%, #1a1060 100%);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .card-enchanted .preview-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #f5ead8;
+      text-shadow: 0 0 40px rgba(201,168,76,0.4);
+      line-height: 1.1;
+    }
+
+    .card-enchanted .preview-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #c9a84c;
+      margin-top: 0.4rem;
+    }
+
+    .card-enchanted .stars {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.4em;
+      color: #c9a84c;
+      opacity: 0.5;
+    }
+
+    .card-enchanted .card-body { padding: 1.5rem; color: rgba(245,234,216,0.7); }
+
+    .card-enchanted .card-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #c9a84c;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-enchanted .card-desc { font-size: 0.88rem; line-height: 1.6; }
+
+    .card-enchanted .card-cta {
+      margin-top: 1.25rem;
+      display: inline-block;
+      border: 1px solid #c9a84c;
+      color: #c9a84c;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .card-enchanted:hover .card-cta { background: #c9a84c; color: #08081f; }
+
+    /* ── Spirit card ── */
+    .card-spirit {
+      background: #1a3a8f;
+      border: 3px solid #f5c400;
+      box-shadow: 6px 6px 0 #d4a800, 0 8px 30px rgba(0,0,0,0.4);
+    }
+
+    .card-spirit:hover {
+      box-shadow: 8px 8px 0 #d4a800, 0 14px 40px rgba(0,0,0,0.5);
+    }
+
+    .card-spirit .preview {
+      background: #1a3a8f;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid #f5c400;
+      position: relative;
+    }
+
+    .card-spirit .preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.03) 20px,
+        rgba(255,255,255,0.03) 22px
+      );
+    }
+
+    .card-spirit .preview-title {
+      font-family: 'Bangers', cursive;
+      font-size: 2.6rem;
+      letter-spacing: 0.05em;
+      color: white;
+      text-shadow: 3px 3px 0 #f5c400, 5px 5px 0 #d4a800;
+      line-height: 1.05;
+      position: relative;
+    }
+
+    .card-spirit .preview-sub {
+      font-family: 'Bangers', cursive;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      color: #f5c400;
+      margin-top: 0.4rem;
+      position: relative;
+    }
+
+    .card-spirit .preview-stars {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+      letter-spacing: 0.25em;
+      color: #f5c400;
+      position: relative;
+    }
+
+    .card-spirit .card-body { padding: 1.5rem; color: rgba(255,255,255,0.8); }
+
+    .card-spirit .card-name {
+      font-family: 'Bangers', cursive;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: #f5c400;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-spirit .card-desc { font-size: 0.88rem; line-height: 1.6; }
+
+    .card-spirit .card-cta {
+      margin-top: 1.25rem;
+      display: inline-block;
+      background: #f5c400;
+      color: #1a3a8f;
+      font-family: 'Bangers', cursive;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      padding: 0.45rem 1.25rem;
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 #d4a800;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+
+    .card-spirit:hover .card-cta {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 #d4a800;
+    }
+
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="intro">
+    <p class="intro-eyebrow">St. Symphorosa School &mdash; May 15, 2026</p>
+    <h1 class="intro-title">Sleeping Beauty</h1>
+    <p class="intro-sub">Presented with Missoula Children's Theatre</p>
+  </div>
+
+  <p class="choose-label">Choose your experience</p>
+
+  <div class="cards">
+
+    <a class="card card-enchanted" href="enchanted.html">
+      <div class="preview">
+        <div class="preview-title">Sleeping<br>Beauty</div>
+        <div class="preview-sub">A Rock 'n Roll Fable for the Ages</div>
+        <div class="stars">✦ ✦ ✦</div>
+      </div>
+      <div class="card-body">
+        <p class="card-name">The Enchanted Experience</p>
+        <p class="card-desc">An elegant, story-first presentation. Dark and cinematic, with the full cast list, synopsis, and program notes.</p>
+        <span class="card-cta">Enter &rarr;</span>
+      </div>
+    </a>
+
+    <a class="card card-spirit" href="spirit.html">
+      <div class="preview">
+        <div class="preview-title">Sleeping<br>Beauty</div>
+        <div class="preview-sub">St. Symphorosa School ⭐ May 2026</div>
+        <div class="preview-stars">★ ★ ★ ★ ★</div>
+      </div>
+      <div class="card-body">
+        <p class="card-name">School Spirit Edition</p>
+        <p class="card-desc">Bold, bright, and proud. The same show — same video, same cast, same story — with all the school spirit energy this performance deserves.</p>
+        <span class="card-cta">Let's Go! &rarr;</span>
+      </div>
+    </a>
+
+  </div>
+
+</body>
+</html>
